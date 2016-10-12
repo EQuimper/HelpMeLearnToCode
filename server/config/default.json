@@ -1,0 +1,34 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "mongodb": "mongodb://localhost:27017/HelpMeLearningToCode",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "Cvq7yBZsrP7ocsfyp9GDDVmana1QfbSjEGNh/HghxWtCr0PdQzsSjOh4opan/9b2x8pABtJk2HthXIPgapi6LA=="
+    },
+    "local": {},
+    "facebook": {
+      "clientID": "your facebook client id",
+      "clientSecret": "your facebook client secret",
+      "permissions": {
+        "scope": ["public_profile","email"]
+      }
+    },
+    "github": {
+      "clientID": "your github client id",
+      "clientSecret": "your github client secret",
+      "permissions": {
+        "scope": []
+      }
+    },
+    "google": {
+      "clientID": "your google client id",
+      "clientSecret": "your google client secret",
+      "permissions": {
+        "scope": ["profile"]
+      }
+    }
+  },
+  "corsWhitelist": []
+}
