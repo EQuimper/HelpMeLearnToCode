@@ -13,7 +13,12 @@ const NavBar = ({ route: { pathname } }) => (
     <Navbar.Collapse>
       <Nav>
         <NavItem active={pathname === '/' ? true : false} onClick={() => browserHistory.push('/')}>Home</NavItem>
-        <NavItem active={pathname === '/paths' ? true : false} onClick={() => browserHistory.push('/paths')}>Paths</NavItem>
+        <NavItem
+          active={pathname === '/paths' ? true : false}
+          onClick={() => browserHistory.push('/paths')}
+        >
+          Paths
+        </NavItem>
         <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>
           <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -23,6 +28,11 @@ const NavBar = ({ route: { pathname } }) => (
         </NavDropdown>
       </Nav>
       <Nav pullRight>
+        <NavItem
+          active={pathname === '/signup' ? true : false}
+          onClick={() => browserHistory.push('/signup')}>
+          Sign Up
+        </NavItem>
         <NavItem href="#">My Account</NavItem>
       </Nav>
     </Navbar.Collapse>
