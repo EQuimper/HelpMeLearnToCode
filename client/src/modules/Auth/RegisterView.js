@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Col, Form, FormGroup, FormControl, ControlLabel, Button, Checkbox, HelpBlock, InputGroup } from 'react-bootstrap';
 import './RegisterView.css';
 
+// TODO: Clean this messy component
+
 class RegisterView extends Component {
   state = {
     username: '',

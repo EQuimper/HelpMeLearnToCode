@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 import * as types from './actionTypes';
 import { ROOT_URL } from '../../utils';
 
@@ -12,6 +13,9 @@ const authError = message => ({
   message
 });
 
+const openModalRegistration = () => ({ type: types.OPEN_MODAL_REGISTRATION });
+export const closeModalRegistration = () => ({ type: types.CLOSE_MODAL_REGISTRATION });
+
 export const registerUser = data => {
   return dispatch => {
     axios
@@ -21,6 +25,10 @@ export const registerUser = data => {
         username: res.data.username,
         email: res.data.email
       })))
+      .then(() => {
+        dispatch(openModalRegistration());
+        browserHistory.push('/');
+      })
       .catch(err => dispatch(authError(err.message)));
   }
 }
