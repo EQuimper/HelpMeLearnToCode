@@ -52,15 +52,16 @@ class RegisterView extends Component {
   handleDisabledButton() {
     const { username, email, password, passwordConfirm } = this.state;
 
-    if ((username === '') && (email === '') && (password === '') && (passwordConfirm === '') && (password !== passwordConfirm)) {
+    if (username.length >= 3 && email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/) && password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/) && password === passwordConfirm) {
+      return false;
+    } else {
       return true;
     }
-
-    return false;
   }
 
   render() {
     const { email, username, password, passwordConfirm, remember, errors, helpersBlock } = this.state;
+    const { registerUser } = this.props;
     return (
       <div>
         <h1>Register</h1>
@@ -166,12 +167,20 @@ class RegisterView extends Component {
               <FormGroup>
                 <Col smOffset={2} sm={10}>
                   <Button
+                    onClick={e => {
+                      e.preventDefault();
+                      registerUser({
+                        username,
+                        email,
+                        password
+                      })
+                    }}
                     bsStyle="primary"
                     bsSize="large"
                     type="submit"
                     disabled={this.handleDisabledButton()}
                   >
-                    Sign in
+                    Sign Up
                   </Button>
                 </Col>
               </FormGroup>

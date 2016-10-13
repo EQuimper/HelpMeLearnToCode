@@ -27,8 +27,8 @@ const corsOptions = {
 };
 
 app.use(compress())
-  .options('*', cors(corsOptions))
-  .use(cors(corsOptions))
+  .options('*', cors())
+  .use(cors())
   .use(favicon( path.join(app.get('public'), 'favicon.ico') ))
   .use('/', serveStatic( app.get('public') ))
   .use(bodyParser.json())
@@ -40,3 +40,17 @@ app.use(compress())
   .configure(middleware);
 
 module.exports = app;
+
+
+// app.use(compress())
+//   .options('*', cors(corsOptions))
+//   .use(cors(corsOptions))
+//   .use(favicon( path.join(app.get('public'), 'favicon.ico') ))
+//   .use('/', serveStatic( app.get('public') ))
+//   .use(bodyParser.json())
+//   .use(bodyParser.urlencoded({ extended: true }))
+//   .configure(hooks())
+//   .configure(rest())
+//   .configure(socketio())
+//   .configure(services)
+//   .configure(middleware);

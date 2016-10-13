@@ -2,10 +2,12 @@ import { syncHistoryWithStore } from "react-router-redux";
 import { browserHistory } from "react-router";
 import { applyMiddleware, compose, createStore } from "redux";
 import createLogger from "redux-logger";
+import thunk from 'redux-thunk';
 import rootReducer from "./reducers";
 
 const middleware = [
-  createLogger()
+  createLogger(),
+  thunk
 ];
 
 // Set var for all the middleware + redux chrome extension

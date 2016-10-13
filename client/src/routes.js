@@ -3,12 +3,12 @@ import { Router, Route, IndexRoute } from "react-router";
 import { history } from "./redux/store";
 import AppContainer from './modules/App/AppContainer';
 import Page404 from './modules/App/Page404';
-import RegisterView from './modules/Auth/RegisterView';
+import RegisterContainer from './modules/Auth/RegisterContainer';
 
 export default (
   <Router history={history}>
     <Route component={AppContainer} path="/">
-      <Route component={RegisterView} path="/signup" />
+      <Route component={RegisterContainer} path="/signup" />
       <Route path="*" component={Page404}/>
     </Route>
   </Router>
