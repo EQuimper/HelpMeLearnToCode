@@ -16,10 +16,18 @@ const authError = message => ({
 const openModalRegistration = () => ({ type: types.OPEN_MODAL_REGISTRATION });
 export const closeModalRegistration = () => ({ type: types.CLOSE_MODAL_REGISTRATION });
 
-export const registerUser = data => {
-  return dispatch => {
+export const registerUser = () => {
+
+  return (dispatch, getState) => {
+    const form = getState().form.RegisterForm;
+    const user = {
+      username: form.values.username,
+      email: form.values.email,
+      password: form.values.password
+    }
+
     axios
-      .post(`${ROOT_URL}/users`, data)
+      .post(`${ROOT_URL}/users`, user)
       .then(res => dispatch(authUser({
         id: res.data._id,
         username: res.data.username,
@@ -30,5 +38,6 @@ export const registerUser = data => {
         browserHistory.push('/');
       })
       .catch(err => dispatch(authError(err.message)));
+
   }
-}
+};

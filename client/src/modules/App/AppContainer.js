@@ -5,8 +5,8 @@ import * as actions from '../../redux/actions/AuthActions';
 export default connect(
   (state, ownProps) => ({
     route: ownProps.location,
-    authModal: state.user.modal,
-    user: state.user
+    authModal: state.register.modal,
+    user: state.register.user
   }),
   actions
 )(AppView);

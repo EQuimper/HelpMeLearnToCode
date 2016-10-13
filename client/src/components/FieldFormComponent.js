@@ -1,10 +1,47 @@
 import React, { Component } from 'react';
-import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
+import {FormGroup, FormControl, ControlLabel, Col, HelpBlock } from 'react-bootstrap';
 
-export const FieldFormControl = ({ placeholder, type, input, meta }) => (
-  <FormGroup controlId={input.name} validationState={meta.error ? 'error' : 'success'}>
-    <ControlLabel>{this.props.children}</ControlLabel>
-    <FormControl type={type} placeholder={placeholder} value={input.value} onChange={input.onChange} />
-    <FormControl.Feedback />
-  </FormGroup>
-);
+export const FieldFormComponent = ({
+  placeholder,
+  type,
+  input,
+  meta: { touched, error },
+  autoFocus,
+  meta,
+  children,
+  labelSize,
+  fieldSize,
+  touch
+}) => {
+
+  const checkState = () => {
+    if (touched) {
+      if (error) {
+        return 'error';
+      } else {
+        return 'success';
+      }
+    }
+    return null;
+  }
+
+  return (
+    <FormGroup controlId={input.name} validationState={checkState()}>
+      <Col componentClass={ControlLabel} sm={labelSize}>
+        {children}
+      </Col>
+      <Col sm={fieldSize}>
+        <FormControl
+          {...input}
+          autoFocus={autoFocus}
+          type={type}
+          placeholder={placeholder}
+        />
+          <HelpBlock>
+            {touched && error ? error : null}
+          </HelpBlock>
+        <FormControl.Feedback />
+      </Col>
+    </FormGroup>
+  );
+}

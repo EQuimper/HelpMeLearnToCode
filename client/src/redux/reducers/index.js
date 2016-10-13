@@ -6,5 +6,5 @@ import AuthReducer from './AuthReducer';
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
-  user: AuthReducer
+  register: AuthReducer
 });
