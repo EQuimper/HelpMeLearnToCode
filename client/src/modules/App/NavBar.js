@@ -8,7 +8,7 @@ const NavBar = ({ route: { pathname } }) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <a onClick={() => browserHistory.push('/')}>HelpMeLearningToCode</a>
+        <a style={{ cursor: 'pointer' }} onClick={() => browserHistory.push('/')}>HelpMeLearningToCode</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -28,6 +28,7 @@ const NavBar = ({ route: { pathname } }) => (
           onClick={() => browserHistory.push('/login')}>
           Log In
         </NavItem>
+
         <NavItem
           active={checkNav(pathname, '/signup')}
           onClick={() => browserHistory.push('/signup')}>

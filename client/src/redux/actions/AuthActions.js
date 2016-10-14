@@ -26,18 +26,23 @@ export const registerUser = () => {
       password: form.values.password
     }
 
-    axios
-      .post(`${ROOT_URL}/users`, user)
-      .then(res => dispatch(authUser({
-        id: res.data._id,
-        username: res.data.username,
-        email: res.data.email
-      })))
-      .then(() => {
-        dispatch(openModalRegistration());
-        browserHistory.push('/');
-      })
-      .catch(err => dispatch(authError(err.message)));
+    dispatch(authUser(user));
+    dispatch(openModalRegistration());
+    browserHistory.push('/');
+
+
+    // axios
+    //   .post(`${ROOT_URL}/users`, user)
+    //   .then(res => dispatch(authUser({
+    //     id: res.data._id,
+    //     username: res.data.username,
+    //     email: res.data.email
+    //   })))
+    //   .then(() => {
+        // dispatch(openModalRegistration());
+        // browserHistory.push('/');
+    //   })
+    //   .catch(err => dispatch(authError(err.message)));
 
   }
 };
