@@ -1,1 +1,1 @@
-export const ROOT_URL = 'http://localhost:3030';
+export const ROOT_URL = 'http://localhost:3001/api/v1';
