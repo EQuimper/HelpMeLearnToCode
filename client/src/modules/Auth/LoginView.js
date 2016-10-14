@@ -3,19 +3,19 @@ import { Link } from 'react-router';
 import { Col, Form, FormGroup, Button } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { FieldFormComponent } from '../../components';
-import { validate } from './RegisterValidation';
+import { validate } from './LoginValidation';
 import './RegisterView.css';
 
 // TODO: Clean this messy component
 
-const RegisterView = ({ registerUser, pristine, submitting, handleSubmit, SubmissionError, error }) => {
+const LoginView = ({ pristine, submitting, handleSubmit }) => {
   return (
     <div>
-      <h1>Register</h1>
+      <h1>Log In</h1>
       <Col md={6} mdOffset={3}>
         <Form
           horizontal
-          onSubmit={handleSubmit(registerUser)}
+          onSubmit={handleSubmit}
         >
 
           <Field
@@ -31,36 +31,14 @@ const RegisterView = ({ registerUser, pristine, submitting, handleSubmit, Submis
           </Field>
 
           <Field
-            type="email"
-            name="email"
-            labelSize={4}
-            fieldSize={8}
-            placeholder="Please enter your email"
-            component={FieldFormComponent}
-          >
-            Email
-          </Field>
-
-          <Field
             type="password"
             name="password"
             labelSize={4}
             fieldSize={8}
-            placeholder="Please enter a password"
+            placeholder="Please enter your password"
             component={FieldFormComponent}
           >
             Password
-          </Field>
-
-          <Field
-            type="password"
-            name="confirmPassword"
-            labelSize={4}
-            fieldSize={8}
-            placeholder="Confirm your password"
-            component={FieldFormComponent}
-          >
-            Confirm Password
           </Field>
 
           <FormGroup>
@@ -71,13 +49,13 @@ const RegisterView = ({ registerUser, pristine, submitting, handleSubmit, Submis
                 type="submit"
                 disabled={submitting || pristine}
               >
-                Sign Up
+                Log In
               </Button>
             </Col>
           </FormGroup>
         </Form>
-        <Link to="/login">
-          Already have an account?
+        <Link to="/signup">
+          Don't have an account?
         </Link>
       </Col>
     </div>
@@ -85,6 +63,6 @@ const RegisterView = ({ registerUser, pristine, submitting, handleSubmit, Submis
 }
 
 export default reduxForm({
-  form: 'RegisterForm',
+  form: 'LoginForm',
   validate
-})(RegisterView)
+})(LoginView)

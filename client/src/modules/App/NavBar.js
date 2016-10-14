@@ -24,6 +24,11 @@ const NavBar = ({ route: { pathname } }) => (
       </Nav>
       <Nav pullRight>
         <NavItem
+          active={checkNav(pathname, '/login')}
+          onClick={() => browserHistory.push('/login')}>
+          Log In
+        </NavItem>
+        <NavItem
           active={checkNav(pathname, '/signup')}
           onClick={() => browserHistory.push('/signup')}>
           Sign Up
