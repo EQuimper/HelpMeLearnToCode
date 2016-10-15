@@ -2,7 +2,8 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   menuLeft: false,
-  selectItem: null
+  selectItem: null,
+  liked: false
 }
 
 export default (state = initialState, action) => {
@@ -17,6 +18,11 @@ export default (state = initialState, action) => {
         ...state,
         selectItem: action.item
       };
+    case types.TOGGLE_LIKED_ITEM:
+      return {
+        ...state,
+        liked: !state.liked
+      }
     default:
       return state;
   }

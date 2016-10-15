@@ -2,12 +2,25 @@ import React from 'react';
 import { Col, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import FaArrowCircleOLeft from 'react-icons/lib/fa/arrow-circle-o-left';
 import FaArrowCircleORight from 'react-icons/lib/fa/arrow-circle-o-right';
+import FaHeartO from 'react-icons/lib/fa/heart-o';
+import FaHeart from 'react-icons/lib/fa/heart';
 import { VideoPlayer } from '../../components';
 
 const styles = {
   buttonToggle: {
     height: 30,
     width: 70
+  },
+  buttonLiked: {
+    height: 50,
+    width: 70,
+    color: 'rgb(252, 100, 100)',
+    cursor: 'pointer'
+  },
+  buttonDisLiked: {
+    height: 50,
+    width: 70,
+    cursor: 'pointer'
   }
 }
 
@@ -29,7 +42,8 @@ const fakeData = [
 const DashBoardView = ({
   toggleDashBoard,
   selectItemPlaylist,
-  dashboard: { menuLeft, selectItem }
+  toggleLikedItem,
+  dashboard: { menuLeft, selectItem, liked }
 }) => (
   <div style={{ width: '100vw'}}>
     <Col md={12}>
@@ -41,6 +55,24 @@ const DashBoardView = ({
             <FaArrowCircleORight style={styles.buttonToggle} />
           )}
         </Button>
+      </Col>
+      <Col md={4} mdOffset={1}>
+        {selectItem ? (
+          <h3>{selectItem.title}</h3>
+        ) : null}
+      </Col>
+      <Col md={2}>
+        {liked ? (
+          <FaHeart
+            style={styles.buttonLiked}
+            onClick={() => toggleLikedItem()}
+          />
+        ) : (
+          <FaHeartO
+            style={styles.buttonDisLiked}
+            onClick={() => toggleLikedItem()}
+          />
+        )}
       </Col>
     </Col>
     <Col md={12} style={{ marginTop: '5%'}}>
