@@ -8,7 +8,11 @@ import mongoose from 'mongoose';
 import config from './config/';
 import UserRoutes from './modules/user/UserRoutes';
 
-mongoose.Promise = global.Promise;
+// =======================
+// configuration =========
+// =======================
+
+// mongoose.Promise = global.Promise;
 
 mongoose.connect(config.dbUrl, err => {
   if (err) {
@@ -23,9 +27,14 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// API
-app.use('/api/v1', UserRoutes);
 
+// =======================
+// routes ================
+// =======================
+app.use('/api/v1/user', UserRoutes);
+
+// =======================
+// start the server ======
+// =======================
 const PORT = process.env.PORT || 3001;
-
 app.listen(PORT, () => console.log(`SERVER running on port ${PORT}`)); // eslint-disable-line no-console

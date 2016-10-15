@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'; // used to create, sign, and verify tokens
 import ms from 'ms';
 import User from './UserModel';
 import config from '../../config';
