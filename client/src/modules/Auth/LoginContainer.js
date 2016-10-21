@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/AuthActions';
 import LoginView from './LoginView';
 
-export const LoginContainer = connect(
+export default connect(
   null,
   actions
 )(LoginView);

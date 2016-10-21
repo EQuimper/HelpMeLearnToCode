@@ -1,24 +1,26 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import * as types from './actionTypes';
 import { ROOT_URL } from '../../utils';
 
-const authUser = data => ({
-  type: types.AUTH_USER,
+export const AUTH_USER = 'AUTH_USER';
+export const AUTH_USER_ERROR = 'AUTH_USER_ERROR';
+export const AUTH_USER_SUCCESS = 'AUTH_USER_SUCCESS';
+
+const authUserSuccess = data => ({
+  type: AUTH_USER_SUCCESS,
   data
 });
 
-const authError = message => ({
-  type: types.AUTH_ERROR,
+const authUserError = message => ({
+  type: AUTH_USER_ERROR,
   message
 });
 
-const openModalRegistration = () => ({ type: types.OPEN_MODAL_REGISTRATION });
-export const closeModalRegistration = () => ({ type: types.CLOSE_MODAL_REGISTRATION });
-
 export const registerUser = () => {
-
   return (dispatch, getState) => {
+    dispatch({ type: AUTH_USER });
+
+    // Get element coming from the form state
     const form = getState().form.RegisterForm;
     const user = {
       username: form.values.username,
@@ -26,11 +28,14 @@ export const registerUser = () => {
       password: form.values.password
     }
 
-    dispatch(authUser(user));
+    // If miss something dispatch error
+    if (!user.username || !user.email || !user.password) {
+      return dispatch(authUserError('You need to fill every input!'));
+    }
 
     axios
       .post(`${ROOT_URL}/user/signup`, user)
-      .then(res => dispatch(authUser({
+      .then(res => dispatch(authUserSuccess({
         id: res.data.user.id,
         username: res.data.user.username,
         email: res.data.user.email
@@ -39,6 +44,6 @@ export const registerUser = () => {
         // dispatch(openModalRegistration());
         // browserHistory.push('/');
       })
-      .catch(err => dispatch(authError(err.message)));
+      .catch(err => dispatch(authUserError(err.message)));
   }
 };

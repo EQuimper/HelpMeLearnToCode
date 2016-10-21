@@ -5,7 +5,7 @@ import AppContainer from './modules/App/AppContainer';
 import Page404 from './modules/App/Page404';
 import HomeContainer from './modules/Home/HomeContainer';
 import DashBoardContainer from './modules/DashBoard/DashBoardContainer';
-import { RegisterContainer, LoginContainer } from './modules/Auth/';
+import { RegisterContainer, LoginContainer } from './modules/auth/';
 
 export default (
   <Router history={history}>
