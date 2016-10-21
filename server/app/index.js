@@ -12,7 +12,7 @@ import UserRoutes from './modules/user/UserRoutes';
 // configuration =========
 // =======================
 
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 mongoose.connect(config.dbUrl, err => {
   if (err) {

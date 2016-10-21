@@ -6,11 +6,13 @@ import config from '../../config';
 const createToken = user => jwt.sign(user, config.secret, { expiresIn: ms('30 days') });
 
 // Get info by the req
-const getUserInfo = req => ({
-  id: req._id, // eslint-disable-line
-  username: req.username,
-  email: req.email
-});
+const getUserInfo = req => {
+  return {
+    id: req._id, // eslint-disable-line
+    username: req.username,
+    email: req.email
+  };
+};
 
 // LOGIN
 export const loginUser = (req, res) => {
@@ -44,13 +46,14 @@ export const signupUser = (req, res, next) => { // eslint-disable-line
   /*****************************************/ //eslint-disable-line
 
   // Find if user already exist
-  User.findOne({ email }, (err, existUser) => { // eslint-disable-line
+  User.findOne({ email: `${email}` }, (err, existUser) => { // eslint-disable-line
     if (err) {
       return next(err);
     }
 
     // If exist return error
     if (existUser) {
+      console.log("EXIST");
       return res.status(402).send({ success: false, error: 'That email is already use!' });
     }
 
@@ -61,16 +64,15 @@ export const signupUser = (req, res, next) => { // eslint-disable-line
       password
     });
 
+    console.log('NEWUSER', newUser);
+
     // Save to db
-    newUser.save(user => {
+    newUser.save((err, user) => { // eslint-disable-line
       if (err) {
         return next(err);
       }
 
-      // Get the info for pushing it to the fe
       const infoAboutUser = getUserInfo(user);
-
-      console.log(infoAboutUser);
 
       return res.status(201).json({
         token: `JWT ${createToken(user)}`,

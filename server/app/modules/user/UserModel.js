@@ -29,7 +29,7 @@ UserSchema.pre('save', function(next) { // eslint-disable-line
       return next(err);
     }
 
-    return bcrypt.hash(user.password, salt, hash => {
+    return bcrypt.hash(user.password, salt, (err, hash) => {
       // Store hash in your password DB.
       if (err) {
         return next(err);
@@ -37,7 +37,7 @@ UserSchema.pre('save', function(next) { // eslint-disable-line
 
       user.password = hash;
 
-      next();
+      return next();
     });
   });
 });
