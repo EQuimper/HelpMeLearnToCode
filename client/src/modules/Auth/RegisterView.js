@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 import { Col, Form, FormGroup, Button } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { FieldFormComponent } from '../../components';
-import { validate } from './RegisterValidation';
+import { validate } from './validation/RegisterValidation';
 import './RegisterView.css';
 
 // TODO: Clean this messy component
 
-const RegisterView = ({ registerUser, pristine, submitting, handleSubmit, SubmissionError, error }) => {
+const RegisterView = ({ registerUser, pristine, submitting, handleSubmit }) => {
   return (
     <div>
       <h1>Register</h1>

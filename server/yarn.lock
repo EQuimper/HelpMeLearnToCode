@@ -770,7 +770,7 @@ balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
 
-base64-url@^1.2.1:
+base64-url@^1.2.1, base64-url@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/base64-url/-/base64-url-1.3.2.tgz#4b08113b49d23889f306be64372762d31412f7a8"
 
@@ -1042,6 +1042,10 @@ cors:
   resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.1.tgz#6181aa56abb45a2825be3304703747ae4e9d2383"
   dependencies:
     vary "^1"
+
+crc@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/crc/-/crc-3.4.0.tgz#4258e351613a74ef1153dfcb05e820c3e9715d7f"
 
 cryptiles@2.x.x:
   version "2.0.5"
@@ -1441,6 +1445,20 @@ express:
     type-is "~1.6.13"
     utils-merge "1.0.0"
     vary "~1.1.0"
+
+express-session:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/express-session/-/express-session-1.14.1.tgz#600364f0f6bf5dce32649e006770bdeee80aec99"
+  dependencies:
+    cookie "0.3.1"
+    cookie-signature "1.0.6"
+    crc "3.4.0"
+    debug "~2.2.0"
+    depd "~1.1.0"
+    on-headers "~1.0.1"
+    parseurl "~1.3.1"
+    uid-safe "~2.1.2"
+    utils-merge "1.0.0"
 
 extend@~3.0.0:
   version "3.0.0"
@@ -2667,6 +2685,10 @@ qs@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.0.tgz#3b7848c03c2dece69a9522b0fae8c4126d745f3b"
 
+random-bytes@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/random-bytes/-/random-bytes-1.0.0.tgz#4f68a1dc0ae58bd3fb95848c30324db75d64360b"
+
 randomatic@^1.1.3:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.5.tgz#5e9ef5f2d573c67bd2b8124ae90b5156e457840b"
@@ -3155,6 +3177,13 @@ typedarray@~0.0.5:
 uid-number@~0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
+
+uid-safe@~2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/uid-safe/-/uid-safe-2.1.2.tgz#c934b3caead0fdcd0fb2cff3a8876d06fe0ee0fd"
+  dependencies:
+    base64-url "1.3.2"
+    random-bytes "~1.0.0"
 
 undefsafe@0.0.3:
   version "0.0.3"

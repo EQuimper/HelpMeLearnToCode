@@ -4,7 +4,7 @@ import { Navbar, Nav, MenuItem, NavDropdown, NavItem} from 'react-bootstrap';
 
 import { checkNav } from '../../utils';
 
-const NavBar = ({ route: { pathname } }) => (
+const NavBar = ({ route: { pathname }, isUser }) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
@@ -31,19 +31,29 @@ const NavBar = ({ route: { pathname } }) => (
         </NavItem>
 
       </Nav>
-      <Nav pullRight>
-        <NavItem
-          active={checkNav(pathname, '/login')}
-          onClick={() => browserHistory.push('/login')}>
-          Log In
-        </NavItem>
+      {isUser ? (
+        <Nav pullRight>
+          <NavItem
+            active={checkNav(pathname, '/logout')}
+            onClick={() => browserHistory.push('/logout')}>
+            Log Out
+          </NavItem>
+        </Nav>
+      ) : (
+        <Nav pullRight>
+          <NavItem
+            active={checkNav(pathname, '/login')}
+            onClick={() => browserHistory.push('/login')}>
+            Log In
+          </NavItem>
 
-        <NavItem
-          active={checkNav(pathname, '/signup')}
-          onClick={() => browserHistory.push('/signup')}>
-          Sign Up
-        </NavItem>
-      </Nav>
+          <NavItem
+            active={checkNav(pathname, '/signup')}
+            onClick={() => browserHistory.push('/signup')}>
+            Sign Up
+          </NavItem>
+        </Nav>
+      )}
     </Navbar.Collapse>
   </Navbar>
 )

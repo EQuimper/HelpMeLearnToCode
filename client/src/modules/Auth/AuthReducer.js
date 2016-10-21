@@ -8,7 +8,8 @@ const INITIAL_STATE = {
   user: null,
   isUser: null,
   loading: false,
-  error: null
+  error: null,
+  token: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,7 +20,8 @@ export default (state = INITIAL_STATE, action) => {
       }
     case AUTH_USER_SUCCESS:
       return { ...state,
-        user: action.data,
+        user: action.payload.data,
+        token: action.payload.token,
         loading: false,
         isUser: true
       }

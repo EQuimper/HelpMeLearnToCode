@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import AppView from './AppView';
-import * as actions from '../../redux/actions/AuthActions';
+import { closeModal } from '../ui';
 
 export default connect(
   (state, ownProps) => ({
     route: ownProps.location,
-    authModal: state.register.modal,
-    user: state.register.user
+    auth: state.app.auth,
+    ui: state.ui
   }),
-  actions
+  { closeModal }
 )(AppView);

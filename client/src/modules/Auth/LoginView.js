@@ -3,31 +3,31 @@ import { Link } from 'react-router';
 import { Col, Form, FormGroup, Button } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { FieldFormComponent } from '../../components';
-import { validate } from './LoginValidation';
+import { validate } from './validation/LoginValidation';
 import './RegisterView.css';
 
 // TODO: Clean this messy component
 
-const LoginView = ({ pristine, submitting, handleSubmit }) => {
+const LoginView = ({ pristine, submitting, handleSubmit, loginUser }) => {
   return (
     <div>
       <h1>Log In</h1>
       <Col md={6} mdOffset={3}>
         <Form
           horizontal
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(loginUser)}
         >
 
           <Field
             type="text"
-            value="username"
-            name="username"
+            value="email"
+            name="email"
             labelSize={4}
             fieldSize={8}
-            placeholder="Please enter your username"
+            placeholder="Please enter your email"
             component={FieldFormComponent}
           >
-            Username
+            Email
           </Field>
 
           <Field

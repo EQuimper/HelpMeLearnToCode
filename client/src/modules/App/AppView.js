@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
 import './App.css';
 import NavBar from './NavBar';
 import { ModalRegister } from '../../components';
@@ -11,16 +10,12 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 class AppView extends Component {
   render() {
-    console.log(this.props);
-    const { route, authModal, closeModalRegistration } = this.props;
+    const { route, ui: { modals: { registerModal } }, auth, closeModal } = this.props;
     return (
       <div className="App">
-        <NavBar route={route} />
+        <NavBar route={route} isUser={auth.isUser} />
         {this.props.children}
-        <ModalRegister
-          show={authModal}
-          onHide={() => closeModalRegistration()}
-        />
+        <ModalRegister show={registerModal.show} user={auth.user} onHide={() => closeModal()} />
       </div>
     );
   }

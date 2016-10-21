@@ -1,9 +1,8 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/actions/AuthActions';
+import { loginUser } from './AuthActions';
 import LoginView from './LoginView';
 
 export default connect(
   null,
-  actions
+  { loginUser }
 )(LoginView);

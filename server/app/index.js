@@ -2,10 +2,12 @@
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import passport from 'passport';
+import session from 'express-session';
 // import cors from 'cors';
 import mongoose from 'mongoose';
 
-import config from './config/';
+import config from './config';
 import UserRoutes from './modules/user/UserRoutes';
 
 // =======================
@@ -26,7 +28,15 @@ const app = express();
 // Middleware
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'werwerwerw',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // =======================
 // routes ================

@@ -6,13 +6,11 @@ import config from '../../config';
 const createToken = user => jwt.sign(user, config.secret, { expiresIn: ms('30 days') });
 
 // Get info by the req
-const getUserInfo = req => {
-  return {
-    id: req._id, // eslint-disable-line
-    username: req.username,
-    email: req.email
-  };
-};
+const getUserInfo = req => ({
+  id: req._id, // eslint-disable-line
+  username: req.username,
+  email: req.email
+});
 
 // LOGIN
 export const loginUser = (req, res) => {
@@ -53,8 +51,7 @@ export const signupUser = (req, res, next) => { // eslint-disable-line
 
     // If exist return error
     if (existUser) {
-      console.log("EXIST");
-      return res.status(402).send({ success: false, error: 'That email is already use!' });
+      return res.status(402).send({ success: false, error: 'This user already exist!' });
     }
 
     // Create new user
@@ -63,8 +60,6 @@ export const signupUser = (req, res, next) => { // eslint-disable-line
       email,
       password
     });
-
-    console.log('NEWUSER', newUser);
 
     // Save to db
     newUser.save((err, user) => { // eslint-disable-line
@@ -75,6 +70,7 @@ export const signupUser = (req, res, next) => { // eslint-disable-line
       const infoAboutUser = getUserInfo(user);
 
       return res.status(201).json({
+        success: true,
         token: `JWT ${createToken(user)}`,
         user: infoAboutUser
       });
